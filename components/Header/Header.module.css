@@ -1,24 +1,53 @@
 .header {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid var(--badges);
+    align-items: center;
+    border-bottom: 1px solid #F2F4F7;
     padding: 24px 120px;
-    background-color: var(--badges);
+    background-color: #F2F4F7;
 }
 
-.list {
+.brandLogo {
+    display: flex;
+    align-items: center;
+}
+
+.logoSvg {
+    display: block;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.logoSvg:hover {
+    opacity: 0.8;
+}
+
+.navigation {
+    display: flex;
+}
+
+.navList {
     display: flex;
     gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.listItem {
-    text-align: center;
-    color: var(--main);
+.navLink {
+    text-decoration: none;
+    color: #101828;
     transition: color 0.2s ease;
+    cursor: pointer;
+    font-weight: 400;
 }
 
-.listItem:hover,
-.listItem:focus,
-.listItemActive {
-    color: var(--button-hover);
+.navLink:hover,
+.navLink:focus {
+    color: #3470FF;
+}
+
+.navLink.active {
+    color: #3470FF;
+    font-weight: 600;
 }

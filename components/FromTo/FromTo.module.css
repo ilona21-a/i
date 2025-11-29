@@ -1,5 +1,6 @@
 .fromtoWrapper {
     display: flex;
+    position: relative;
 }
 
 .block {
@@ -8,10 +9,10 @@
 }
 
 .label {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.33333;
-    color: var(--gray);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.29;
+    color: #8A8A89;
     margin-bottom: 8px;
 }
 
@@ -19,30 +20,32 @@
     border: none;
     outline: none;
     background: none;
-    padding: 11px 24px;
-    font-family: var(--font-family);
+    padding: 14px 24px;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 1.25;
-    color: var(--main);
-    background-color: var(--inputs);
+    font-size: 18px;
+    line-height: 1.11;
+    color: #121417;
+    background-color: #F7F7FB;
+    height: 48px;
+    width: 160px;
 }
 
 .block input::placeholder {
-    font-family: var(--font-family);
     font-weight: 500;
-    font-size: 16px;
-    line-height: 1.25;
-    color: var(--main);
+    font-size: 18px;
+    line-height: 1.11;
+    color: #121417;
 }
 
 .blockFrom input {
-    border-right: 1px solid var(--gray-light);
-    border-radius: 12px 0 0 12px;
+    border-right: 1px solid rgba(138, 138, 137, 0.2);
+    border-radius: 14px 0 0 14px;
+    padding-left: 24px;
 }
 
 .blockTo input {
-    border-radius: 0 12px 12px 0;
+    border-radius: 0 14px 14px 0;
+    padding-right: 24px;
 }
 
 /* For WebKit browsers (Chrome, Safari, Edge, Opera) */
@@ -55,9 +58,4 @@
 /* For Firefox */
 .block input[type="number"] {
     -moz-appearance: textfield;
-}
-
-/* For other browsers (general approach) */
-.block input[type="number"] {
-    appearance: textfield;
 }

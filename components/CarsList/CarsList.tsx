@@ -17,7 +17,7 @@ const CarsList = ({ cars }: CarsListProps) => {
 
   return (
     <div className={classes.carsSection}>
-      <ul className={classes.gridContainer}>
+      <ul className={classes.list}>
         {cars.map(renderCarItem)}
       </ul>
     </div>

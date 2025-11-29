@@ -1,60 +1,110 @@
-.label {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.33333;
-    color: var(--gray);
-    margin-bottom: 8px;
-}
-
-.customSelect {
-    width: fit-content;
+.container {
+    display: flex;
+    flex-direction: column;
     position: relative;
 }
 
-.selectBtn {
-    border-radius: 12px;
-    padding: 12px 16px;
-    background-color: var(--inputs);
+.labelText {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.29;
+    color: #8A8A89;
+    margin-bottom: 8px;
+}
+
+.selectBox {
+    position: relative;
+    width: 224px;
+}
+
+.trigger {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 18px;
+    background-color: #F7F7FB;
     display: flex;
     align-items: center;
-    gap: 32px;
+    justify-content: space-between;
+    gap: 12px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.11;
+    color: #121417;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    height: 48px;
+    text-align: left;
 }
 
-.arrow {
-    rotate: 180deg;
-    transition: rotate 0.2s ease;
+.trigger:hover {
+    background-color: #EDEDF3;
 }
 
-.arrow.up {
-    rotate: 0deg;
+.arrowIcon {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
 }
 
-.dropdown {
-    box-sizing: border-box;
+.arrowDown {
+    transform: rotate(0deg);
+}
+
+.arrowUp {
+    transform: rotate(180deg);
+}
+
+.optionsList {
     position: absolute;
     top: calc(100% + 4px);
+    left: 0;
     width: 100%;
     max-height: 272px;
     overflow-y: auto;
     z-index: 10;
     box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.02);
-    background: var(--white);
-    border: 1px solid var(--inputs);
-    border-radius: 12px;
-    padding: 14px 18px;
+    background: #fff;
+    border: 1px solid rgba(18, 20, 23, 0.05);
+    border-radius: 14px;
+    padding: 14px 8px 14px 18px;
+    list-style: none;
+    margin: 0;
 }
 
-.dropdownItem {
+.option {
     cursor: pointer;
-    color: var(--gray);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: rgba(18, 20, 23, 0.2);
     margin-bottom: 8px;
+    padding: 4px 0;
+    transition: color 0.2s ease;
 }
 
-.dropdownItem:last-child {
+.option:last-child {
     margin-bottom: 0;
 }
 
-.dropdownItem:hover,
-.dropdownItem:focus {
-    color: var(--main);
+.option:hover,
+.option:focus {
+    color: #121417;
+}
+
+/* Стилізація скролбару */
+.optionsList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.optionsList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.optionsList::-webkit-scrollbar-thumb {
+    background-color: rgba(18, 20, 23, 0.05);
+    border-radius: 10px;
+}
+
+.optionsList::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(18, 20, 23, 0.1);
 }

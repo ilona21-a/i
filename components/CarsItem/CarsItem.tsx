@@ -3,21 +3,36 @@
 import { Car } from "@/types/cars";
 import classes from "./CarsItem.module.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
+import Link from "next/link";
 
 interface CarsItemProps {
   car: Car;
 }
 
-const CarsItem = ({ car }: CarsItemProps) => {
-  const [isLiked, setIsLiked] = useState(false);
+// Форматування пробігу з пробілами: 5000 -> "5 000"
+const formatMileage = (mileage: number): string => {
+  return mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+};
 
-  const handleLikeToggle = () => {
-    setIsLiked(!isLiked);
+// Витягуємо місто з адреси
+const extractCity = (address: string): string => {
+  const parts = address.split(",");
+  return parts[parts.length - 1]?.trim() || address;
+};
+
+const CarsItem = ({ car }: CarsItemProps) => {
+  const { isFavorite, toggleFavorite } = useFavoritesStore();
+  const isLiked = isFavorite(car.id);
+
+  const handleLikeToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(car.id);
   };
 
   const iconName = isLiked ? "icon-heart-active" : "icon-heart";
-  const heartClass = `${classes.heartSvg} ${isLiked ? classes.active : ""}`;
+  const heartClass = `${classes.likeBtn} ${isLiked ? classes.active : ""}`;
 
   return (
     <li className={classes.vehicleItem}>
@@ -26,17 +41,17 @@ const CarsItem = ({ car }: CarsItemProps) => {
           <Image
             className={classes.vehicleImg}
             src={car.img}
-            alt={car.model}
+            alt={`${car.brand} ${car.model}`}
             width={276}
             height={268}
           />
           <button
             type="button"
-            className={classes.likeBtn}
+            className={heartClass}
             onClick={handleLikeToggle}
-            aria-label="Toggle favorite"
+            aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
           >
-            <svg className={heartClass} width="16" height="16">
+            <svg className={classes.heartSvg} width="18" height="18">
               <use href={`/sprite.svg#${iconName}`}></use>
             </svg>
           </button>
@@ -47,21 +62,22 @@ const CarsItem = ({ car }: CarsItemProps) => {
             <h2 className={classes.carTitle}>
               {car.brand} <span>{car.model}</span>, {car.year}
             </h2>
-            <p className={classes.priceText}>${car.rentalPrice}</p>
+            <p className={classes.priceText}>{car.rentalPrice}</p>
           </div>
 
           <ul className={classes.featuresList}>
-            <li>{car.address}</li>
+            <li>{extractCity(car.address)}</li>
             <li>{car.rentalCompany}</li>
             <li>{car.type}</li>
-            <li>{car.mileage}</li>
+            <li>{car.model}</li>
+            <li>{formatMileage(car.mileage)} km</li>
           </ul>
         </div>
       </div>
 
-      <button type="button" className={classes.actionBtn}>
-        Learn more
-      </button>
+      <Link href={`/catalog/${car.id}`} className={classes.actionBtn}>
+        Read more
+      </Link>
     </li>
   );
 };

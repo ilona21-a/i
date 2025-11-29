@@ -15,11 +15,11 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.brandLogo}>
+      <Link href="/" className={styles.brandLogo}>
         <svg className={styles.logoSvg} width="102" height="16">
           <use href="sprite.svg#icon-logo"></use>
         </svg>
-      </div>
+      </Link>
       <nav className={styles.navigation}>
         <ul className={styles.navList}>
           <li className={getLinkClass("/")}>
