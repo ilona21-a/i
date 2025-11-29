@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--badges);
+    padding: 24px 120px;
+    background-color: var(--badges);
+}
+
+.list {
+    display: flex;
+    gap: 32px;
+}
+
+.listItem {
+    text-align: center;
+    color: var(--main);
+    transition: color 0.2s ease;
+}
+
+.listItem:hover,
+.listItem:focus,
+.listItemActive {
+    color: var(--button-hover);
+}

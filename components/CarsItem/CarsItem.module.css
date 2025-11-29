@@ -1,0 +1,64 @@
+.item {
+    flex-basis: calc((100% - 96px) / 4);
+}
+
+.imageWrapper {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.image {
+    background-color: #dbdbdb;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    object-fit: cover;
+    height: auto;
+    border-radius: 14px;
+    background: linear-gradient(
+        180deg,
+        rgba(18, 20, 23, 0.5) 0%,
+        rgba(18, 20, 23, 0.5) 100%
+    );
+}
+
+.likeButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    fill: var(--badges);
+}
+
+.active {
+    fill: var(--button);
+}
+
+.infoWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.info,
+.price {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--main);
+}
+
+.info span {
+    color: var(--button);
+}
+
+.infoList {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33333;
+    color: var(--gray);
+    display: flex;
+    gap: 12px;
+}

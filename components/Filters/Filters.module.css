@@ -1,0 +1,20 @@
+.filters {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 56px;
+}
+
+.button {
+    border-radius: 12px;
+    padding: 12px 51px;
+    background-color: var(--button);
+    font-weight: 600;
+    color: var(--white);
+    align-self: flex-end;
+}
+
+.button:hover,
+.button:focus {
+    background-color: var(--button-hover);
+}
