@@ -1,7 +1,7 @@
 "use client";
 
 import { Car } from "@/types/cars";
-import classes from "./CarsItem.module.css";
+import styles from "./CarsItem.module.css";
 import Image from "next/image";
 import { useFavoritesStore } from "@/store/useFavoritesStore";
 import Link from "next/link";
@@ -10,13 +10,10 @@ interface CarsItemProps {
   car: Car;
 }
 
-// Форматування пробігу з пробілами: 5000 -> "5 000"
-const formatMileage = (mileage: number): string => {
-  return mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-};
+const formatMileage = (mileage: number) =>
+  mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-// Витягуємо місто з адреси
-const extractCity = (address: string): string => {
+const extractCity = (address: string) => {
   const parts = address.split(",");
   return parts[parts.length - 1]?.trim() || address;
 };
@@ -31,52 +28,47 @@ const CarsItem = ({ car }: CarsItemProps) => {
     toggleFavorite(car.id);
   };
 
-  const iconName = isLiked ? "icon-heart-active" : "icon-heart";
-  const heartClass = `${classes.likeBtn} ${isLiked ? classes.active : ""}`;
-
   return (
-    <li className={classes.vehicleItem}>
-      <div className={classes.container}>
-        <div className={classes.imgBlock}>
+    <li className={styles.item}>
+      <div className={styles.mainBlock}>
+        <div className={styles.imageWrapper}>
           <Image
-            className={classes.vehicleImg}
+            className={styles.image}
             src={car.img}
             alt={`${car.brand} ${car.model}`}
-            width={276}
+            width={274}
             height={268}
           />
           <button
             type="button"
-            className={heartClass}
+            className={`${styles.likeButton} ${isLiked ? styles.active : ""}`}
             onClick={handleLikeToggle}
             aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
           >
-            <svg className={classes.heartSvg} width="18" height="18">
-              <use href={`/sprite.svg#${iconName}`}></use>
+            <svg width="18" height="18">
+              <use href={`/sprite.svg#${isLiked ? "icon-heart-active" : "icon-heart"}`} />
             </svg>
           </button>
         </div>
 
-        <div className={classes.infoBlock}>
-          <div className={classes.topRow}>
-            <h2 className={classes.carTitle}>
-              {car.brand} <span>{car.model}</span>, {car.year}
-            </h2>
-            <p className={classes.priceText}>{car.rentalPrice}</p>
-          </div>
-
-          <ul className={classes.featuresList}>
-            <li>{extractCity(car.address)}</li>
-            <li>{car.rentalCompany}</li>
-            <li>{car.type}</li>
-            <li>{car.model}</li>
-            <li>{formatMileage(car.mileage)} km</li>
-          </ul>
+        <div className={styles.infoWrapper}>
+          <p className={styles.info}>
+            {car.brand} <span>{car.model}</span>, {car.year}
+          </p>
+          <p className={styles.price}>{car.rentalPrice}</p>
         </div>
+
+        <ul className={styles.infoList}>
+          <li>{extractCity(car.address)}</li>
+          <li>{car.rentalCompany}</li>
+          <li>{car.type}</li>
+          <li>{car.model}</li>
+          <li>{formatMileage(car.mileage)}</li>
+        </ul>
       </div>
 
-      <Link href={`/catalog/${car.id}`} className={classes.actionBtn}>
-        Read more
+      <Link href={`/catalog/${car.id}`} className={styles.button}>
+        Learn more
       </Link>
     </li>
   );
